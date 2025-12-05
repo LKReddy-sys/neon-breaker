@@ -85,7 +85,7 @@ const GameCanvas: React.FC = () => {
     isSuper: false,
     isMuted: false,
     themeName: THEMES[0].name,
-    showTiltButton: false
+    showTiltButton: true
   });
 
   // --- Background Particles Init ---
@@ -850,7 +850,6 @@ const GameCanvas: React.FC = () => {
         width={CANVAS_WIDTH}
         height={CANVAS_HEIGHT}
         className="w-full h-full block bg-black rounded-lg shadow-2xl cursor-none"
-        onClick={handleCanvasTap}
         onTouchStart={handleCanvasTap}
       />
       
@@ -915,7 +914,7 @@ const GameCanvas: React.FC = () => {
           </button>
           <div className="mt-8 text-gray-400 text-sm flex flex-col items-center gap-2">
             <p>Use Left/Right Arrows to Move</p>
-            <p>Space to Launch / Pause</p>
+            <p>Space or TAP to Launch / Pause</p>
           </div>
           
           {/* Mobile Tilt Button */}
