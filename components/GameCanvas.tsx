@@ -760,29 +760,75 @@ const GameCanvas: React.FC = () => {
     requestRef.current = requestAnimationFrame(tick);
   }, []);
 
+  // Main action used by both keyboard (SPACE) and mobile tap
+  const handlePrimaryAction = () => {
+    if (gameStateRef.current === GameState.MENU) {
+      // From main menu -> start game
+      startGame();
+    } else if (gameStateRef.current === GameState.IDLE) {
+      // Ball is sitting on the paddle -> launch
+      launchBall();
+    } else if (gameStateRef.current === GameState.PLAYING) {
+      // Pause game
+      togglePause();
+    } else if (gameStateRef.current === GameState.PAUSED) {
+      // Resume game
+      togglePause();
+    } else if (
+      gameStateRef.current === GameState.GAME_OVER ||
+      gameStateRef.current === GameState.VICTORY
+    ) {
+      // Restart after game over / victory
+      startGame();
+    }
+  };
+
+  // For mobile: tap on the canvas triggers the same action as SPACE
+  const handleCanvasTap = () => {
+    handlePrimaryAction();
+  };
+
+
   useEffect(() => {
     requestRef.current = requestAnimationFrame(tick);
 
+    // One place for the main action (start / launch / pause / resume)
+    const handlePrimaryAction = () => {
+      if (gameStateRef.current === GameState.MENU) {
+        startGame();
+      } else if (gameStateRef.current === GameState.IDLE) {
+        // ball waiting on paddle
+        launchBall();
+      } else if (gameStateRef.current === GameState.PLAYING) {
+        // pause the game
+        togglePause();
+      } else if (gameStateRef.current === GameState.PAUSED) {
+        // resume the game
+        togglePause();
+      } else if (
+        gameStateRef.current === GameState.GAME_OVER ||
+        gameStateRef.current === GameState.VICTORY
+      ) {
+        // restart from beginning
+        startGame();
+      }
+    };
+
     const handleKeyDown = (e: KeyboardEvent) => {
       keysPressed.current[e.code] = true;
-      
+
       if (e.code === 'Space') {
-        if (gameStateRef.current === GameState.MENU) {
-          startGame();
-        } else if (gameStateRef.current === GameState.IDLE) {
-          launchBall();
-        } else if (gameStateRef.current === GameState.PLAYING) {
-          togglePause();
-        } else if (gameStateRef.current === GameState.PAUSED) {
-          togglePause();
-        } else if (gameStateRef.current === GameState.GAME_OVER || gameStateRef.current === GameState.VICTORY) {
-            startGame();
-        }
+        handlePrimaryAction();
       }
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
       keysPressed.current[e.code] = false;
+    };
+
+    // For mobile: tap on the canvas should do the same as SPACE
+    const handleCanvasTap = () => {
+      handlePrimaryAction();
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -804,6 +850,8 @@ const GameCanvas: React.FC = () => {
         width={CANVAS_WIDTH}
         height={CANVAS_HEIGHT}
         className="w-full h-full block bg-black rounded-lg shadow-2xl cursor-none"
+        onClick={handleCanvasTap}
+        onTouchStart={handleCanvasTap}
       />
       
       {/* HUD Overlay */}
