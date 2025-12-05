@@ -1,0 +1,8 @@
+{
+  "name": "Neon Breaker",
+  "description": "A high-performance, retro-styled brick breaking game with 24 levels featuring 6 distinct immersive themes (Toxic, Matrix, Volcanic, etc.), multi-hit bricks, and explosive power-ups.",
+  "requestFramePermissions": [
+    "accelerometer",
+    "gyroscope"
+  ]
+}
