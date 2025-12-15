@@ -4,8 +4,6 @@ import { Menu, X } from 'lucide-react';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // --- CONFIGURATION ---
-  // Modify this list to change the right-side menu items and their links.
   const navItems = [
     { name: 'QR Generator', href: 'https://lkreddy-sys.github.io/pora-QRGenerator/' },
     { name: 'BMI Calculator', href: 'https://lkreddy-sys.github.io/HappiestBMICalculator/' },
@@ -33,7 +31,7 @@ const Navbar: React.FC = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  target="_blank" // Opens link in new tab
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
