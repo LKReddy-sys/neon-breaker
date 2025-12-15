@@ -22,7 +22,7 @@ const Navbar: React.FC = () => {
           <div className="flex-shrink-0 flex items-center cursor-pointer">
             {!imgError ? (
               <img 
-                src="/pora.png" 
+                src="pora.png" 
                 alt="Pora" 
                 className="h-10 w-auto"
                 onError={() => setImgError(true)}
