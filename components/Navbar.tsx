@@ -19,13 +19,11 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo Section */}
           <div className="flex-shrink-0 flex items-center cursor-pointer">
-        
-              <img
-                src="pora.png"
-                alt="Pora"
-                className="h-10 w-auto"
-              />
-            </div>
+            <img
+              src="pora.png"
+              alt="Pora"
+              className="h-10 w-auto"
+            />
           </div>
 
           {/* Desktop Menu */}
@@ -35,7 +33,7 @@ const Navbar: React.FC = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  target="_blank" // Opens link in new tab. Remove this line to open in same tab.
+                  target="_blank" // Opens link in new tab
                   rel="noopener noreferrer"
                   className="text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
