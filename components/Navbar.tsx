@@ -3,7 +3,6 @@ import { Menu, X } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [imgError, setImgError] = useState(false);
 
   // --- CONFIGURATION ---
   // Modify this list to change the right-side menu items and their links.
@@ -20,20 +19,13 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo Section */}
           <div className="flex-shrink-0 flex items-center cursor-pointer">
-            {!imgError ? (
-              <img 
-                src="pora.png" 
-                alt="Pora" 
+        
+              <img
+                src="pora.png"
+                alt="Pora"
                 className="h-10 w-auto"
-                onError={() => setImgError(true)}
               />
-            ) : (
-              /* Fallback Text Logo if image fails to load */
-              <div className="flex items-center gap-1">
-                <span className="text-blue-500 font-bold text-2xl font-retro">PORA</span>
-                <span className="text-white font-bold text-2xl font-retro">INVEST</span>
-              </div>
-            )}
+            </div>
           </div>
 
           {/* Desktop Menu */}
